@@ -37,11 +37,12 @@ function chartBuilder(dataInput) {
         x: dataInput.otu_ids.slice(0,10).map(id => id.toString()),
         y: dataInput.sample_values.slice(0,10),
         type: "bar",
-        name: "OTU Bar Chart"
+        name: "OTU Bar Chart",
+        text: dataInput.otu_labels.slice(0,10),
     }
     // Define the layout
     var layout = {
-        title: "Count of Highest 10 OTUs per Sample",
+        title: "Count of Highest 10 OTUs per Sample (bar)",
         xaxis:{title: "OTU ID No.", type: "category"},
         yaxis:{title: "Count in Sample"}
     }
@@ -59,14 +60,32 @@ function chartBuilder(dataInput) {
 function chartInitialize(dataInput) {
     demoBuilder(dataInput.metadata[0]);
     chartBuilder(dataInput.samples[0]);
+    bubbleBuilder(dataInput.samples[0]);
 }
 
 
-// Function to build gauge chart
+// Function to build bubble chart
 
-function gaugeBuilder(dataInput) {
-    
-}
+function bubbleBuilder(dataInput) {
+    var trace1 = {
+        x: dataInput.otu_ids.slice(0,10).map(id => id.toString()),
+        y: dataInput.sample_values.slice(0,10),
+        mode: 'markers',
+        text: dataInput.otu_labels.slice(0,10),
+        marker: {
+        size: dataInput.sample_values.slice(0,10),
+        color: dataInput.otu_ids.slice(0,10).map(id => id.toString()),
+        },
+    };
+
+    var data = [trace1];
+
+    var layout = {
+        title: "Count of Highest 10 OTUs per Sample (bubble)",
+        // showlegend: false,
+    };
+    Plotly.newPlot('bubble', data, layout);
+};
 
 
 // Begin page load and working wtih data
@@ -97,7 +116,7 @@ selection.on("change",function(){
 
     demoBuilder(metadataObj);
     chartBuilder(sampleObj);
-
+    bubbleBuilder(sampleObj);
 
     })
 });
