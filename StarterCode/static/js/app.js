@@ -61,6 +61,7 @@ function chartInitialize(dataInput) {
     demoBuilder(dataInput.metadata[0]);
     chartBuilder(dataInput.samples[0]);
     bubbleBuilder(dataInput.samples[0]);
+    gaugeBuilder(dataInput.metadata[0]);
 }
 
 
@@ -86,6 +87,30 @@ function bubbleBuilder(dataInput) {
     };
     Plotly.newPlot('bubble', data, layout);
 };
+
+
+// Function to build gauge
+function gaugeBuilder(dataInput) {
+    var data = [
+        {
+            domain: { x: [0, 1], y: [0, 1] },
+            value: dataInput.wfreq,
+            title: { text: "Wash Frequency" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: {axis: { range: [null, 10], tickwidth: 1, tickcolor: "darkblue" }}
+        }
+    ];
+
+    var layout = { width: 600,
+        height: 500,
+        margin: { t: 0, b: 0 }
+    };
+
+
+    Plotly.newPlot('gauge', data, layout);
+}
+
 
 
 // Begin page load and working wtih data
@@ -117,7 +142,7 @@ selection.on("change",function(){
     demoBuilder(metadataObj);
     chartBuilder(sampleObj);
     bubbleBuilder(sampleObj);
-
+    gaugeBuilder(metadataObj);
     })
 });
 
