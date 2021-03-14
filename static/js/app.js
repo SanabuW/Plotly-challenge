@@ -1,8 +1,7 @@
 // Function to create Test Subject IDs dropdown menu
 function dropdownBuilder (dataInput) {
     var dropdownObj = d3.select("#selDataset");
-    // Create a blank value to empty selection
-    dropdownObj.append("option").attr("value","");
+    // Use each element from "names" array in data to create new <option> tag
     dataInput.names.forEach(name => dropdownObj.append("option").text(`${name}`));
 }
 
@@ -40,6 +39,7 @@ function chartBuilder(dataInput) {
         name: "OTU Bar Chart",
         text: dataInput.otu_labels.slice(0,10),
     }
+
     // Define the layout
     var layout = {
         title: "Count of Highest 10 OTUs per Sample (bar)",
@@ -64,9 +64,30 @@ function chartInitialize(dataInput) {
     gaugeBuilder(dataInput.metadata[0]);
 }
 
+// Function to build gauge
+function gaugeBuilder(dataInput) {
+    var data = [
+        {
+            domain: { x: [0, 1], y: [0, 1] },
+            value: dataInput.wfreq,
+            title: { text: "Wash Frequency" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: {axis: { range: [null, 10], tickwidth: 5},
+                    bar: { color: "lightblue" }
+                }
+        }
+    ];
+
+    var layout = { width: 600,
+        height: 500,
+        margin: { t: 0, b: 0 }
+    };
+
+    Plotly.newPlot('gauge', data, layout);
+}
 
 // Function to build bubble chart
-
 function bubbleBuilder(dataInput) {
     var trace1 = {
         x: dataInput.otu_ids.slice(0,10).map(id => id.toString()),
@@ -77,40 +98,19 @@ function bubbleBuilder(dataInput) {
         size: dataInput.sample_values.slice(0,10),
         color: dataInput.otu_ids.slice(0,10).map(id => id.toString()),
         },
+        name: "Bacteria (Bubble size reflects count)"
     };
 
     var data = [trace1];
 
     var layout = {
         title: "Count of Highest 10 OTUs per Sample (bubble)",
-        // showlegend: false,
+        showlegend: true,
+        xaxis: {title:{text:"OTU ID No."}},
+        yaxis: {title:{text:"Count in Sample"}},
     };
     Plotly.newPlot('bubble', data, layout);
 };
-
-
-// Function to build gauge
-function gaugeBuilder(dataInput) {
-    var data = [
-        {
-            domain: { x: [0, 1], y: [0, 1] },
-            value: dataInput.wfreq,
-            title: { text: "Wash Frequency" },
-            type: "indicator",
-            mode: "gauge+number",
-            gauge: {axis: { range: [null, 10], tickwidth: 1, tickcolor: "darkblue" }}
-        }
-    ];
-
-    var layout = { width: 600,
-        height: 500,
-        margin: { t: 0, b: 0 }
-    };
-
-
-    Plotly.newPlot('gauge', data, layout);
-}
-
 
 
 // Begin page load and working wtih data
@@ -145,14 +145,3 @@ selection.on("change",function(){
     gaugeBuilder(metadataObj);
     })
 });
-
-
-
-
-
-
-
-
-
-
-
