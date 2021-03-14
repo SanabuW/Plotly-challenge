@@ -114,7 +114,7 @@ function gaugeBuilder(dataInput) {
 
 
 // Begin page load and working wtih data
-d3.json("././samples.json").then(function(dataObj) {
+d3.json("././data/samples.json").then(function(dataObj) {
     console.log(dataObj)
     // Build dropdown
     dropdownBuilder(dataObj);
