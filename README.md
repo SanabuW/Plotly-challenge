@@ -8,7 +8,7 @@ https://sanabuw.github.io/Plotly-challenge/
 This repository is for the Plot.ly assignment for the UCSD Data Bootcamp using the Plot.ly library in Javascript to create a user-end web application dashboard which dynamically react to user actions. The assignment covers the following concepts:
 - Create a dashboard with user interaction/usability as a design priority
 - Graph and style basic graphs using Plot.ly
-- Import and filter data from external sources (e.f. JSON files)
+- Import and filter data from external sources (e.g. JSON files)
 - Using event listeners and D3.js library to dynamically update datasets that Plot.ly graphs utilize 
 - Demonstrate different represenatations of data by applying data to varied chart attributes  (e.g. chart bubble's bubble size and color)
 
@@ -21,5 +21,5 @@ This repository is for the Plot.ly assignment for the UCSD Data Bootcamp using t
 ## data
 - Holds the source data to be displayed
 
-## static\js
+## static.js
 - Holds the Javascript app file to execute Plot.ly drawing, event listeners and data filtering
