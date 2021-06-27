@@ -1,5 +1,4 @@
 # Plot.ly-challenge
-UCSD Plot.ly-challenge
 
 ## Summary
 This repository is for the Plot.ly assignment for the UCSD Data Bootcamp using the Plot.ly library in Javascript to create a user-end web application dashboard which dynamically react to user actions. The assignment covers the following concepts:
