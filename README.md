@@ -14,7 +14,7 @@ This repository is for the Plot.ly assignment for the UCSD Data Bootcamp using t
 
 <img src="static/images/app_001.png" width="500"/>
 
-<img src="static/images/app_002.png" width="500"/>
+<img src="static/images/app_002.png" width="700"/>
 
 
 
