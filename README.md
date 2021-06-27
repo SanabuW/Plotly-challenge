@@ -12,6 +12,11 @@ This repository is for the Plot.ly assignment for the UCSD Data Bootcamp using t
 - Using event listeners and D3.js library to dynamically update datasets that Plot.ly graphs utilize 
 - Demonstrate different represenatations of data by applying data to varied chart attributes  (e.g. chart bubble's bubble size and color)
 
+<img src="static/images/app_001.png" width="500"/>
+
+<img src="static/images/app_002.png" width="500"/>
+
+
 
 # File Overview
 
